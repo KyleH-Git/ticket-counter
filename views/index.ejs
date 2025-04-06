@@ -3,22 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Counter</title>
+    <title>Ticket Counter</title>
     <link rel="stylesheet" href="/styles.css">
+    <script defer src="/script.js"></script>
 </head>
 <body>
-    <h1>Big Room</h1>
-    <div class="counters">
-        <label for="Cierra">Cierra:</label>
-        <input type="number" name="Cierra"/>
-        <label for="Tez">Tez:</label>
-        <input type="number" name="Tez"/>
-        <label for="Maisy">Maisy:</label>
-        <input type="number" name="Maisy"/>
-        <label for="Janice">Janice:</label>
-        <input type="Number" name="Janice"/>
-        <label for="Protevsky">Protevsky:</label>
-        <input type="number" name="Protevsky"/>
-    </div>
+    <%- include('./partials/header.ejs') %>
+    <%if(user === undefined){ %>
+        <%- include('./partials/login.ejs') %>
+    <% } else { %>
+        <%- include('./partials/logout-form.ejs') %>
+    <div class="current-player">Current Player: None</div>
+       <main>
+        <div class="modify-ticket">
+            <form action="/ticket/addTickets?_method=PUT" method="POST">
+                <label for="addTickets">Add Tickets:</label><br>
+                <input type="number" name="addTickets" placeholder="Ticket Amount" />
+                <input class="selected-player hidden" name="selectedPlayer" value="" />
+                <button type="submit">Add</button>
+            </form>
+            <form action="/ticket/removeTicketsDmg?_method=PUT" method="POST">
+                <input type="number" name="doDamage" placeholder="Ticket Amount" />
+                <input class="selected-player hidden" name="selectedPlayer" value="" />
+                <button type="submit" name="doDamage">Do Damage</button>
+            </form>
+            <div class="spend-tickets">
+                <form action="/ticket/moveBackToken?_method=PUT" method="POST"> 
+                    <input class="selected-player hidden" name="selectedPlayer" value="" />
+                    <button type="submit" name="addTurn">Move Back Token</button>
+                </form>
+                <form action="/ticket/removeTickets/50?_method=PUT" method="POST">
+                    <input class="selected-player hidden" name="selectedPlayer" value="" />
+                    <button type="submit" name="weakenHost">Weaken the Host: 50</button>
+                </form>
+                <form action="/ticket/removeTickets/50?_method=PUT" method="POST">
+                    <input class="selected-player hidden" name="selectedPlayer" value="" />
+                    <button type="submit" name="buffPlayer">Strengthen a Player: 50</button>
+                </form>
+                <form action="/ticket/removeTickets/30?_method=PUT" method="POST">
+                    <input class="selected-player hidden" name="selectedPlayer" value="" />
+                    <button type="submit" name="groundHost">Ground Host: 30</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="counters">
+            <%console.log(characters)%>
+            <%if(characters.length > 0){%>
+                <%for(char of characters){ %>
+                    <p key="<%=char.charname%>"><span key="<%=char.charname%>"><%=char.charname%>:</span> <%=char.tickets%> tickets</p>
+                <% } %>
+            <% } %>  
+        </div>
+    </main>
+    <% } %>
 </body>
 </html>

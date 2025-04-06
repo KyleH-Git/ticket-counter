@@ -1,0 +1,13 @@
+<div class="log-out">
+    <%=user.username%>
+    <form action="/auth/sign-out" method="GET">
+        <button class ='logout-btn' type="submit">Log Out</button>
+    </form>
+    <div class="add-char">
+        <form action="/ticket/newchar" method="POST">
+            <label for="charname">Character Name:</label>
+            <input type="text" name="charname" id="charname" placeholder="Character Name"/>
+            <button type="submit">Add</button>
+        </form>
+    </div>
+</div>

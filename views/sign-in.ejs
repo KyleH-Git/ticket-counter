@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Counter</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <%- include('./partials/header.ejs') %>
+    <form class="account-form" id="signIn-form" action="/auth/sign-in" method="POST" >
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" />
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" />
+        <button type="submit" class="sign-btn">Sign in</button> 
+    </form>
+    
+    <span> Create an Account: </span>
+    <form action="/auth/sign-up" method="GET">
+        <button class="acc-btn" type="submit" id="sign-up">Sign-Up</button>
+    </form>
+    
+</body>
+</html>
