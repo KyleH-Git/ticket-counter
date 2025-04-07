@@ -44,7 +44,7 @@ p > span:hover {
 
 }
 
-form > button {
+.user-btn {
     color: var(--border);
     background-color: white;
     border-radius: 10px;
@@ -52,7 +52,7 @@ form > button {
     margin: 4px;
 }
 
-form > button:hover {
+.user-btn:hover {
     background-color: rgb(46, 73, 160);
     border-color: rgb(30, 72, 128);
     cursor: pointer;
@@ -74,6 +74,17 @@ main {
     align-items: center;
     justify-content: center;
 }
+
+.log-out{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.log-out > * {
+    padding: 4px;
+}
+
 .spend-tickets{
     display: flex;
     flex-direction: column;

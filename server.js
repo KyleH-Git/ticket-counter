@@ -21,6 +21,8 @@ app.use(session({
     saveUninitialized: true,
     store: MongoStore.create({
         mongoUrl: process.env.MONGODB_URI,
+        ttl: 1 * 24 * 60 * 60,
+        autoRemove: 'native',
     })
 }));
 
@@ -36,22 +38,21 @@ const Character = require('./models/Character.js');
 
 app.get('/', async (req, res) => {
     if(req.session.user){
-        const userChars = await User.find({_id: req.session.user._id});
+        const savedUser = await User.findById({_id: req.session.user._id});
         const characters = [];
-        for(char of userChars[0].characters){
+        for(char of savedUser.characters){
             const userChar = await Character.findById({_id: char})
             characters.push(userChar)
         }
-        console.log(characters)
         res.render('index.ejs',{
                 characters: characters,
+                turnCost: savedUser.turnCost,
                 user: req.session.user
             }
         );
     } else {
         const characters = [];
         res.render('index.ejs',{
-            characters: characters,
             user: req.session.user
         });
     }

@@ -20,38 +20,37 @@
                 <label for="addTickets">Add Tickets:</label><br>
                 <input type="number" name="addTickets" placeholder="Ticket Amount" />
                 <input class="selected-player hidden" name="selectedPlayer" value="" />
-                <button type="submit">Add</button>
+                <button class ="user-btn" type="submit">Add</button>
             </form>
             <form action="/ticket/removeTicketsDmg?_method=PUT" method="POST">
                 <input type="number" name="doDamage" placeholder="Ticket Amount" />
                 <input class="selected-player hidden" name="selectedPlayer" value="" />
-                <button type="submit" name="doDamage">Do Damage</button>
+                <button class ="user-btn" type="submit" name="doDamage">Do Damage</button>
             </form>
             <div class="spend-tickets">
                 <form action="/ticket/moveBackToken?_method=PUT" method="POST"> 
                     <input class="selected-player hidden" name="selectedPlayer" value="" />
-                    <button type="submit" name="addTurn">Move Back Token</button>
+                    <button class ="user-btn" type="submit" name="addTurn">Move Back Token: <%=turnCost%></button>
                 </form>
                 <form action="/ticket/removeTickets/50?_method=PUT" method="POST">
                     <input class="selected-player hidden" name="selectedPlayer" value="" />
-                    <button type="submit" name="weakenHost">Weaken the Host: 50</button>
+                    <button class ="user-btn" type="submit" name="weakenHost">Weaken the Host: 50</button>
                 </form>
                 <form action="/ticket/removeTickets/50?_method=PUT" method="POST">
                     <input class="selected-player hidden" name="selectedPlayer" value="" />
-                    <button type="submit" name="buffPlayer">Strengthen a Player: 50</button>
+                    <button class ="user-btn" type="submit" name="buffPlayer">Strengthen a Player: 50</button>
                 </form>
                 <form action="/ticket/removeTickets/30?_method=PUT" method="POST">
                     <input class="selected-player hidden" name="selectedPlayer" value="" />
-                    <button type="submit" name="groundHost">Ground Host: 30</button>
+                    <button class ="user-btn" type="submit" name="groundHost">Ground Host: 30</button>
                 </form>
             </div>
         </div>
 
         <div class="counters">
-            <%console.log(characters)%>
             <%if(characters.length > 0){%>
                 <%for(char of characters){ %>
-                    <p key="<%=char.charname%>"><span key="<%=char.charname%>"><%=char.charname%>:</span> <%=char.tickets%> tickets</p>
+                    <p key="<%=char.charname%>"><button class ="user-btn" key="<%=char.charname%>"><%=char.charname%></button> : <%=char.tickets%> tickets</p>
                 <% } %>
             <% } %>  
         </div>

@@ -4,7 +4,6 @@ const characterSchema = new mongoose.Schema({
     charname: {
         type: String,
         required: true,
-        unique: true,
     },
     tickets: {
         type: Number,

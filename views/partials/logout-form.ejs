@@ -1,6 +1,7 @@
 <div class="log-out">
-    <%=user.username%>
+    
     <form action="/auth/sign-out" method="GET">
+        <%=user.username%>
         <button class ='logout-btn' type="submit">Log Out</button>
     </form>
     <div class="add-char">
